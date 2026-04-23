@@ -23,7 +23,7 @@ btnSimpan.addEventListener('click', async () => {
     console.log("Sedang mencoba mengirim data ke Supabase...");
 
     const { data, error } = await supabase
-        .from('Perpus uji 1')
+        .from('Perpus digital')
         .insert([
             { 
                 "Nama Siswa": nama, 
