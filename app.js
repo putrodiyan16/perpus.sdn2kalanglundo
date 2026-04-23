@@ -1,11 +1,13 @@
+// Ganti dengan URL dan Key milikmu
 const supabaseUrl = 'https://vdkjyvdfddybtmyytqdx.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZka2p5dmRmZGR5YnRteXl0cWR4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY5MzE1MjUsImV4cCI6MjA5MjUwNzUyNX0.jT72qRw6-AbO4vTZb5P5H7rOPZLYhOrkKcRHSfSc5wI';
 
-// Gunakan nama variabel yang unik agar tidak bentrok dengan library-nya
-const db = supabase.createClient(supabaseUrl, supabaseKey);
+// Kita pakai nama 'client', jangan pakai nama 'supabase' lagi di sini
+const client = supabase.createClient(supabaseUrl, supabaseKey);
 
 // Fungsi Pindah Halaman
 function tampilkanHalaman(idHalaman) {
+    console.log("Membuka: " + idHalaman);
     document.getElementById('menu-utama').classList.add('hidden');
     document.querySelectorAll('.halaman').forEach(h => h.classList.add('hidden'));
     document.getElementById(idHalaman).classList.remove('hidden');
@@ -28,15 +30,15 @@ if (btnSimpan) {
             return;
         }
 
-        // Pakai variabel 'db' yang tadi kita buat di atas
-        const { data, error } = await db
+        // Pakai variabel 'client'
+        const { data, error } = await client
             .from('Perpus digital') 
             .insert([{ "Nama Siswa": nama, "Kelas": kelas }]);
 
         if (error) {
             alert("Gagal simpan: " + error.message);
         } else {
-            alert("Data siswa berhasil disimpan!");
+            alert("Berhasil! Data siswa sudah masuk ke Supabase.");
             document.getElementById('namaSiswa').value = '';
             document.getElementById('kelasSiswa').value = '';
             kembaliKeMenu();
