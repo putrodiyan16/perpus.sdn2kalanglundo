@@ -1,5 +1,5 @@
-const supabaseUrl = 'URL_SUPABASE_KAMU';
-const supabaseKey = 'KEY_SUPABASE_KAMU';
+const supabaseUrl = 'https://vdkjyvdfddybtmyytqdx.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZka2p5dmRmZGR5YnRteXl0cWR4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY5MzE1MjUsImV4cCI6MjA5MjUwNzUyNX0.jT72qRw6-AbO4vTZb5P5H7rOPZLYhOrkKcRHSfSc5wI';
 const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
 // Fungsi Pindah Halaman
