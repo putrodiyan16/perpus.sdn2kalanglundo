@@ -1,6 +1,7 @@
 const supabaseUrl = 'https://vdkjyvdfddybtmyytqdx.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZka2p5dmRmZGR5YnRteXl0cWR4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY5MzE1MjUsImV4cCI6MjA5MjUwNzUyNX0.jT72qRw6-AbO4vTZb5P5H7rOPZLYhOrkKcRHSfSc5wI';
-const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+const { createClient } = supabase; // Ambil fungsi dari library
+const _supabase = createClient(supabaseUrl, supabaseKey); // Gunakan nama variabel berbeda, misal _supabase
 
 // Fungsi Pindah Halaman
 function tampilkanHalaman(idHalaman) {
