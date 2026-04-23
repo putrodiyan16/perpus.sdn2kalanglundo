@@ -34,15 +34,14 @@ function mulaiScan() {
         async (decodedText) => {
             const idScanned = parseInt(decodedText);
             
-            // Berhenti scan agar tidak berulang-ulang
             stopScanner();
 
-            // --- TAHAP 1: CARI DATA SISWA ---
-            // Menggunakan tanda kutip dua " " di dalam string select untuk kolom dengan spasi
+            // --- TAHAP 1: CARI DATA SISWA (TELITI DI SINI) ---
+            // Kita ganti 'id' menjadi 'ID_Siswa' sesuai gambar tabelmu
             const { data: dataSiswa, error: errorCari } = await client
                 .from('Perpus digital')
                 .select('"Nama Siswa", Kelas')
-                .eq('id', idScanned) 
+                .eq('ID_Siswa', idScanned) // <--- SUDAH SAYA PERBAIKI
                 .single();
 
             if (errorCari || !dataSiswa) {
@@ -54,15 +53,15 @@ function mulaiScan() {
             // --- TAHAP 2: JIKA KETEMU, SIMPAN KE TABEL KEDATANGAN ---
             const { error: errorSimpan } = await client
                 .from('Kedatangan')
-                .insert([{ ID_Siswa: idScanned }]);
+                .insert([{ ID_Siswa: idScanned }]); // Sesuaikan huruf besar kecilnya
 
             if (errorSimpan) {
                 alert("Gagal mencatat: " + errorSimpan.message);
             } else {
-                // TAHAP 3: MUNCULKAN NAMA ASLI DI LAYAR
+                // TAHAP 3: MUNCULKAN NAMA ASLI
                 const namaSiswa = dataSiswa["Nama Siswa"];
                 const kelasSiswa = dataSiswa.Kelas;
-                alert("✅ ABSENSI BERHASIL\n\nSelamat Datang, " + namaSiswa + "!\nKelas: " + kelasSiswa);
+                alert("✅ ABSENSI BERHASIL\n\nNama: " + namaSiswa + "\nKelas: " + kelasSiswa);
             }
             
             kembaliKeMenu();
@@ -71,17 +70,6 @@ function mulaiScan() {
         console.error("Kamera bermasalah:", err);
     });
 }
-
-function stopScanner() {
-    if (html5QrCode && html5QrCode.isScanning) {
-        html5QrCode.stop().then(() => {
-            console.log("Scanner Berhenti.");
-        }).catch(err => {
-            console.error("Gagal stop scanner:", err);
-        });
-    }
-}
-
 // 5. LOGIKA REGISTRASI (Siswa Baru)
 const btnSimpan = document.getElementById('btnSimpan');
 if (btnSimpan) {
