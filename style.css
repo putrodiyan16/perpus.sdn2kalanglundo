@@ -78,3 +78,17 @@ input {
     border: 2px dashed #ccc;
     margin: 20px 0;
 }
+
+/* --- KODE LOGO BARU --- */
+.container-logo {
+    display: flex;
+    justify-content: center; /* Membuat logo ke tengah secara horizontal */
+    align-items: center;     /* Membuat logo ke tengah secara vertikal */
+    padding: 20px 0;         /* Memberi jarak atas dan bawah agar tidak sesak */
+}
+
+.logo-sekolah {
+    width: 100px;            /* Ukuran lebar logo (bisa kamu ganti misal 120px) */
+    height: auto;            /* Tinggi otomatis mengikuti lebar agar tidak gepeng */
+    object-fit: contain;     /* Memastikan gambar tetap proporsional */
+}
